@@ -1,43 +1,40 @@
 # Schedule Extension for Garoon
 
-A Chrome extension that enhances schedule notifications for Garoon, the groupware product from Cybozu, Inc. Stay on top of upcoming events with reminders, view today's schedule from the toolbar popup, and see the time of your next event right on the toolbar icon.
+サイボウズ株式会社のグループウェア Garoon の予定通知を強化する Chrome 拡張機能（Manifest V3）です。デスクトップ通知と通知音で予定を見逃さず、ツールバーのポップアップから今日の予定を確認でき、ツールバーアイコンには次の予定の開始時刻が表示されます。さらに Garoon の日表示・週表示の予定画面には、現在時刻を示すラインがオーバーレイ表示されます。
 
-## About this project
+## このプロジェクトについて
 
-This is a personal side project. It is **not** an official Cybozu product. Everything in this repo is the author's own work and views, not Cybozu's.
+これは作者個人のサイドプロジェクトです。サイボウズの**公式製品ではありません**。本リポジトリの内容はすべて作者個人の成果物および見解であり、サイボウズの見解を示すものではありません。
 
-"Garoon" is a registered trademark of Cybozu, Inc. The name appears here only to describe what this extension works with.
+「Garoon」はサイボウズ株式会社の登録商標です。本拡張機能が連携する対象を説明するためにのみ名称を使用しています。
 
-## Features
+## 機能
 
-- Periodic fetching (every minute) of today's events from Garoon
-- Desktop notifications for upcoming events
-- Toolbar icon showing the start time of the next event today
-- Toolbar popup listing today's schedule with past/ongoing state
-- Configurable notification lead time and ignore-by-keyword filter
-- Authentication-failure notification with an error badge on the toolbar icon
+- 予定の開始前にデスクトップ通知する（任意で通知音を設定可能）
+- ツールバーアイコンのバッジに、今日の次の予定の開始時刻を表示
+- ツールバーのポップアップに今日の予定を一覧表示（終日予定や、終了済み・進行中・未開始の状態を区別）
+- Garoon の日表示・週表示で現在時刻を示すラインを表示
 
-## Development
+## 開発
 
-This project uses [pnpm](https://pnpm.io/) and webpack.
+本プロジェクトは [pnpm](https://pnpm.io/)（`pnpm@10.33.0`）と webpack（`ts-loader` および `sass-loader`）を使用しています。
 
 ```sh
 pnpm install
-pnpm build:dev   # development build
-pnpm build       # production build (also creates archive.zip)
-pnpm start       # watch mode
+pnpm build:dev   # 開発ビルド（dist/ に出力）
+pnpm build       # 本番ビルド（NODE_ENV=production）+ scripts/zip.sh で archive.zip を生成
+pnpm start       # webpack --watch（ファイル変更を監視）
+pnpm icons       # src/icon/calendar.svg から sharp で PNG アイコンを再生成
 ```
 
-The build output is written to `dist/`. Load it as an unpacked extension from Chrome's extension page (`chrome://extensions`) with developer mode enabled.
+## 謝辞
 
-## Acknowledgements
+本プロジェクトは Shinya Kamiaka 氏による [kamiaka/garoon-chrome-extension](https://github.com/kamiaka/garoon-chrome-extension)（MIT License）を出発点としており、そこから大幅に改変したものです。詳細は [LICENSE](./LICENSE) を参照してください。
 
-This project is based on [kamiaka/garoon-chrome-extension](https://github.com/kamiaka/garoon-chrome-extension) by Shinya Kamiaka, originally released under the MIT License. The code was used as a starting point and has been substantially modified. See [LICENSE](./LICENSE) for the full notice.
+## アイコン
 
-## Icons
+ポップアップで使用しているアイコンは、[Lucide](https://lucide.dev/) を [ISC License](https://lucide.dev/license) のもとで利用しています。
 
-The popup's refresh and settings icons are the `refresh-ccw` and `settings` icons from [Lucide](https://lucide.dev/), licensed under the [ISC License](https://lucide.dev/license).
+## ライセンス
 
-## License
-
-Released under the MIT License. See [LICENSE](./LICENSE) for details.
+MIT License のもとで公開しています。詳細は [LICENSE](./LICENSE) を参照してください。
