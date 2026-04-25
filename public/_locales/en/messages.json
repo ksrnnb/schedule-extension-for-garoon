@@ -26,9 +26,6 @@
   "opt_notifies_events_label": {
     "message": "Notifies events"
   },
-  "opt_notifies_require_auth_label": {
-    "message": "Notifies authentication required"
-  },
   "ignore_event_name_keywords": {
     "message": "Ignore event name keywords (separate by line break)"
   },
@@ -74,8 +71,11 @@
   "all_day": {
     "message": "All day"
   },
-  "opt_sound_title": {
-    "message": "Notification sound"
+  "opt_schedule_view_title": {
+    "message": "Schedule view"
+  },
+  "opt_shows_time_indicator_label": {
+    "message": "Show current time line"
   },
   "opt_plays_sound_label": {
     "message": "Play a chime when notifying events"

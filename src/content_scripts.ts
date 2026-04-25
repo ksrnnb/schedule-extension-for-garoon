@@ -1,13 +1,7 @@
-import { startTimeIndicator } from './content/timeIndicator';
+import { init } from './content/timeIndicatorController';
 
 if (document.readyState === 'loading') {
-  document.addEventListener(
-    'DOMContentLoaded',
-    () => {
-      startTimeIndicator();
-    },
-    { once: true },
-  );
+  document.addEventListener('DOMContentLoaded', init, { once: true });
 } else {
-  startTimeIndicator();
+  init();
 }

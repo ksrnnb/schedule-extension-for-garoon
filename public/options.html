@@ -24,7 +24,7 @@
           <div class="input-group">
             <input class="input" id="base-url" name="base-url">
           </div>
-          <div class="note sub-block">
+          <div class="note opt-subitem">
             <p>__MSG_input_following_url_format__</p>
             <ul>
               <li>https://{sub-domain}.cybozu.com/g/</li>
@@ -34,54 +34,54 @@
       </div>
       <div class="card block">
         <div class="card-header">
-          <div class="card-title">__MSG_opt_notification_title__</div>
+          <div class="card-title">__MSG_opt_schedule_view_title__</div>
         </div>
         <div class="card-body">
-          <div class="checkbox-container sub-block">
+          <div class="checkbox-container opt-item">
             <label>
-              <input type="checkbox" name="notifies-events" class="checkbox">
-              __MSG_opt_notifies_events_label__
-            </label>
-            <div class="sub-block">
-              <div class="input-group notify-minutes-before">
-                <input class="input" type="number" name="notify-minutes-before" min="0" max="60">
-                <span class="input-group-text">__MSG_minutes_before__</span>
-              </div>
-            </div>
-            <div class="sub-block">
-              <label for="ignore-event-keywords">__MSG_ignore_event_name_keywords__</label>
-              <div class="input-group">
-                <textarea class="input" name="ignore-event-keywords"></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="checkbox-container sub-block">
-            <label>
-              <input type="checkbox" class="checkbox" name="notifies-require-auth">
-              __MSG_opt_notifies_require_auth_label__
+              <input type="checkbox" class="checkbox" name="shows-time-indicator">
+              __MSG_opt_shows_time_indicator_label__
             </label>
           </div>
         </div>
       </div>
       <div class="card block">
         <div class="card-header">
-          <div class="card-title">__MSG_opt_sound_title__</div>
+          <div class="card-title">__MSG_opt_notification_title__</div>
         </div>
         <div class="card-body">
-          <div class="checkbox-container sub-block">
+          <div class="checkbox-container opt-item">
+            <label>
+              <input type="checkbox" name="notifies-events" class="checkbox">
+              __MSG_opt_notifies_events_label__
+            </label>
+            <div class="opt-subitem">
+              <div class="input-group notify-minutes-before">
+                <input class="input" type="number" name="notify-minutes-before" min="0" max="60">
+                <span class="input-group-text">__MSG_minutes_before__</span>
+              </div>
+            </div>
+            <div class="opt-subitem">
+              <label for="ignore-event-keywords">__MSG_ignore_event_name_keywords__</label>
+              <div class="input-group">
+                <textarea class="input" name="ignore-event-keywords"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="checkbox-container opt-item">
             <label>
               <input type="checkbox" class="checkbox" name="plays-sound">
               __MSG_opt_plays_sound_label__
             </label>
-          </div>
-          <div class="sub-block">
-            <label for="sound-volume">__MSG_opt_sound_volume_label__</label>
-            <div class="sound-volume-row">
-              <input class="sound-volume-slider" type="range" name="sound-volume" min="0" max="100" step="1">
-              <span class="sound-volume-value" aria-live="polite">60%</span>
-              <button type="button" class="button test-sound-button" name="test-sound">
-                __MSG_opt_test_sound_button__
-              </button>
+            <div class="opt-subitem">
+              <label for="sound-volume">__MSG_opt_sound_volume_label__</label>
+              <div class="sound-volume-row">
+                <input class="sound-volume-slider" type="range" name="sound-volume" min="0" max="100" step="1">
+                <span class="sound-volume-value" aria-live="polite">60%</span>
+                <button type="button" class="button test-sound-button" name="test-sound">
+                  __MSG_opt_test_sound_button__
+                </button>
+              </div>
             </div>
           </div>
         </div>
