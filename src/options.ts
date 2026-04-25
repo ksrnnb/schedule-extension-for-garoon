@@ -1,7 +1,7 @@
 import * as store from './common/store';
 import { defaultConfig } from './common/store';
 
-import { localizeHTML, playChime } from './common/util';
+import { isValidBaseURL, localizeHTML, playChime, t } from './common/util';
 
 function input(
   name: string,
@@ -42,6 +42,7 @@ async function init() {
   const v = await store.load();
 
   const baseURL = input('base-url', v.baseURL);
+  baseURL.addEventListener('input', () => baseURL.setCustomValidity(''));
   const notifiesEvents = input('notifies-events', v.notifiesEvents);
   const ignoreEventKeywords = textarea(
     'ignore-event-keywords',
@@ -96,6 +97,12 @@ async function init() {
     .querySelector('#ext-options')!
     .addEventListener('submit', async ev => {
       ev.preventDefault();
+      if (!isValidBaseURL(baseURL.value)) {
+        baseURL.setCustomValidity(t('err_invalid_base_url'));
+        baseURL.reportValidity();
+        return;
+      }
+      baseURL.setCustomValidity('');
       await store.save({
         baseURL: baseURL.value,
         notifiesEvents: notifiesEvents.checked,

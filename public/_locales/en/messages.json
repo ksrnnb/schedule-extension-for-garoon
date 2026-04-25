@@ -41,6 +41,9 @@
   "err_no_base_url": {
     "message": "No base URL"
   },
+  "err_invalid_base_url": {
+    "message": "Enter a Garoon cloud URL (*.cybozu.com)"
+  },
   "refresh": {
     "message": "Refresh"
   },
