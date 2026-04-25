@@ -57,7 +57,8 @@ export async function handleError(err: any, inAction?: boolean) {
       return;
     }
 
-    console.warn(`API Error status ${err.status()}`);
+    const msg = await err.message();
+    console.warn(`API Error status ${err.status()}`, msg ?? '');
     return;
   }
   Promise.reject(err);
