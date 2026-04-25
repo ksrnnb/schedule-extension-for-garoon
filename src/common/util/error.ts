@@ -1,4 +1,13 @@
-import { isFetchError, ErrorResponse } from '../api';
+import { ErrorResponse } from '../api';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function isFetchError(err: any): err is Error {
+  return (
+    err instanceof Error &&
+    err.name === 'TypeError' &&
+    err.message === 'Failed to fetch'
+  );
+}
 import * as store from '../store';
 import { updateBadge } from './badge';
 import { t } from './message';
