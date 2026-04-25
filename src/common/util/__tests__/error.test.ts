@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { isFetchError } from '../privateHelper';
+import { isFetchError } from '../error';
 
 describe('isFetchError', () => {
   it('returns true for the canonical fetch network failure', () => {
