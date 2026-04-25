@@ -31,7 +31,7 @@
   ],
   "default_locale": "ja",
   "permissions": ["alarms", "notifications", "storage", "offscreen"],
-  "host_permissions": ["https://*/"],
+  "host_permissions": ["https://*.cybozu.com/*"],
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
