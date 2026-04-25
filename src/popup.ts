@@ -85,6 +85,29 @@ async function setError() {
   errorContainer().hidden = !error;
 }
 
+export function isTodayEvent(
+  ev: ScheduleEvent,
+  todayStart: Date,
+  tomorrowStart: Date,
+): boolean {
+  const start = new Date(ev.start.dateTime).getTime();
+  const end = ev.end?.dateTime ? new Date(ev.end.dateTime).getTime() : start;
+  return start < tomorrowStart.getTime() && end > todayStart.getTime();
+}
+
+export function getEventState(
+  ev: ScheduleEvent,
+  now: number,
+): { isPast: boolean; isOngoing: boolean } {
+  const startTime = new Date(ev.start.dateTime).getTime();
+  const endTime = ev.end?.dateTime
+    ? new Date(ev.end.dateTime).getTime()
+    : startTime;
+  const isPast = !ev.isAllDay && endTime <= now;
+  const isOngoing = !ev.isAllDay && !isPast && startTime <= now;
+  return { isPast, isOngoing };
+}
+
 async function setEvents() {
   const { events, baseURL } = await store.load();
   const list = eventsList();
@@ -98,11 +121,9 @@ async function setEvents() {
   const tomorrowStart = new Date(todayStart);
   tomorrowStart.setDate(tomorrowStart.getDate() + 1);
 
-  const todays = (events || []).filter(ev => {
-    const start = new Date(ev.start.dateTime).getTime();
-    const end = ev.end?.dateTime ? new Date(ev.end.dateTime).getTime() : start;
-    return start < tomorrowStart.getTime() && end > todayStart.getTime();
-  });
+  const todays = (events || []).filter(ev =>
+    isTodayEvent(ev, todayStart, tomorrowStart),
+  );
 
   const allDays = todays.filter(ev => ev.isAllDay);
   const timed = todays.filter(ev => !ev.isAllDay);
@@ -123,10 +144,7 @@ function buildEventItem(
 ): HTMLLIElement {
   const start = new Date(ev.start.dateTime);
   const end = ev.end?.dateTime ? new Date(ev.end.dateTime) : null;
-  const startTime = start.getTime();
-  const lastTime = end ? end.getTime() : startTime;
-  const isPast = !ev.isAllDay && lastTime <= now;
-  const isOngoing = !ev.isAllDay && !isPast && startTime <= now;
+  const { isPast, isOngoing } = getEventState(ev, now);
 
   const timeLabel = ev.isAllDay
     ? t('all_day')
