@@ -227,6 +227,30 @@ p {
     width: 10em;
   }
 
+  .sound-volume-row {
+    display: flex;
+    align-items: center;
+    gap: $space-sm;
+  }
+
+  .sound-volume-slider {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .sound-volume-value {
+    flex: 0 0 auto;
+    min-width: 3em;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    color: $secondary-color;
+    font-size: $font-size-sm;
+  }
+
+  .test-sound-button {
+    flex: 0 0 auto;
+  }
+
   .footer {
     margin: $space-lg 0;
     text-align: center;
@@ -346,6 +370,10 @@ p {
 
   .events-container {
     padding: $space-md;
+  }
+
+  .allday-events-container {
+    padding-bottom: 0;
   }
 
   .events-title {

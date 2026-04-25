@@ -65,6 +65,29 @@
           </div>
         </div>
       </div>
+      <div class="card block">
+        <div class="card-header">
+          <div class="card-title">__MSG_opt_sound_title__</div>
+        </div>
+        <div class="card-body">
+          <div class="checkbox-container sub-block">
+            <label>
+              <input type="checkbox" class="checkbox" name="plays-sound">
+              __MSG_opt_plays_sound_label__
+            </label>
+          </div>
+          <div class="sub-block">
+            <label for="sound-volume">__MSG_opt_sound_volume_label__</label>
+            <div class="sound-volume-row">
+              <input class="sound-volume-slider" type="range" name="sound-volume" min="0" max="100" step="1">
+              <span class="sound-volume-value" aria-live="polite">60%</span>
+              <button type="button" class="button test-sound-button" name="test-sound">
+                __MSG_opt_test_sound_button__
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <footer class="footer block">
         <span class="save-button-container">
           <button class="primary-button save-button" type="submit">__MSG_save_options__</button>

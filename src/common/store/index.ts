@@ -15,6 +15,9 @@ export interface Store {
   notifiesEvents?: boolean;
   notifyMinutesBefore?: number;
   ignoreEventKeywords: string;
+
+  playsSound?: boolean;
+  soundVolume?: number;
 }
 
 export const defaultConfig: Store = {
@@ -24,6 +27,8 @@ export const defaultConfig: Store = {
   ignoreEventKeywords: '',
   notifyMinutesBefore: 10,
   baseURL: '',
+  playsSound: true,
+  soundVolume: 0.6,
 };
 
 const storageKey = 'grn.config';

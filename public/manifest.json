@@ -25,7 +25,7 @@
     "service_worker": "background.js"
   },
   "default_locale": "ja",
-  "permissions": ["alarms", "notifications", "storage"],
+  "permissions": ["alarms", "notifications", "storage", "offscreen"],
   "host_permissions": ["https://*/"],
   "options_ui": {
     "page": "options.html",
