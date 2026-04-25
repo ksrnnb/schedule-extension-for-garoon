@@ -4,7 +4,7 @@ import {
   timeString,
   timeZoneOffsetString,
   zeroPad,
-} from '../message';
+} from '../format';
 
 describe('zeroPad', () => {
   it('pads single digits with leading zero (default width 2)', () => {

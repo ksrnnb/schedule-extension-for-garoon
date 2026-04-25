@@ -1,6 +1,6 @@
 import { ScheduleEvent } from '../api';
 import { icons } from '../constants';
-import { dateString, timeString } from './message';
+import { dateString, timeString } from './format';
 import * as store from '../store';
 
 export async function updateBadge() {

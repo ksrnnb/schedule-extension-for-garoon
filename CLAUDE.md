@@ -8,17 +8,22 @@ Chrome extension (Manifest V3) that enhances schedule notifications for Garoon (
 
 ## Commands
 
-Package manager is **pnpm** (`packageManager: pnpm@10.33.0`). Toolchain is webpack + ts-loader + sass-loader.
+Package manager is **pnpm** (`packageManager: pnpm@10.33.0`). Toolchain is webpack + ts-loader + sass-loader; tests run on Vitest + jsdom.
 
 ```sh
 pnpm install
-pnpm build:dev   # one-shot development build → dist/
-pnpm build       # production build (NODE_ENV=production) + scripts/zip.sh → archive.zip
+pnpm build:dev   # one-shot development build → dist/ (runs ESLint inline; errors emit-only in dev)
+pnpm build       # production build (NODE_ENV=production) + scripts/zip.sh → archive.zip; lint errors FAIL the build
 pnpm start       # webpack --watch
+pnpm typecheck   # tsc --noEmit -p tsconfig.test.json (covers src/ + test/)
+pnpm lint        # eslint src
+pnpm lint:fix    # eslint src --fix
+pnpm test        # vitest run
+pnpm test:watch  # vitest (watch mode)
 pnpm icons       # regenerate public/icon/icon-{16,32,48,128}{,-gray}.png from src/icon/calendar.svg via sharp
 ```
 
-There are **no test, lint, or typecheck npm scripts** in `package.json`. ESLint is configured (`.eslintrc.yaml`, with `@typescript-eslint/no-explicit-any: error` and `prettier/prettier`) but must be invoked manually with `npx eslint` if needed. Webpack runs `ts-loader`, so `pnpm build:dev` is the closest thing to a typecheck.
+ESLint runs as part of every webpack build via `eslint-webpack-plugin` (`configType: 'flat'`, `failOnError: !isDev`). Config is `eslint.config.mjs` (flat config, ESLint 9). Two rules are active: `@typescript-eslint/no-explicit-any: error` and `prettier/prettier: error` with project-specific Prettier options inlined. Standalone `pnpm lint` is also available for CI / pre-commit use.
 
 To load the extension locally: `pnpm build:dev`, then in `chrome://extensions` (developer mode) load `dist/` as an unpacked extension. Reload from that page after each rebuild.
 
@@ -84,11 +89,21 @@ A single key `grn.config` in `chrome.storage.local` holds the entire `Store` (se
 
 ### i18n
 
-Locale files live in `public/_locales/{en,ja}/messages.json`; `default_locale` is `ja`. HTML uses `__MSG_<key>__` placeholders, rewritten at runtime by `localizeHTML()` (`src/common/util/dom.ts`) — this string-replaces `document.body.innerHTML`, so don't put untrusted user content into the DOM before `localizeHTML()` runs. TS code reads via `__('key')` (`src/common/util/message.ts`).
+Locale files live in `public/_locales/{en,ja}/messages.json`; `default_locale` is `ja`. HTML uses `__MSG_<key>__` placeholders, rewritten at runtime by `localizeHTML()` (`src/common/util/dom.ts`) — this string-replaces `document.body.innerHTML`, so don't put untrusted user content into the DOM before `localizeHTML()` runs. TS code reads via `t('key')` (`src/common/util/message.ts`), a thin wrapper around `chrome.i18n.getMessage` that warns on missing keys and falls back to the optional default or the key itself.
+
+## Tests
+
+Vitest + jsdom. Tests live colocated under `__tests__/` (e.g. `src/common/util/__tests__/badge.test.ts`); `vitest.config.ts` includes `src/**/*.test.ts` and `test/**/*.test.ts`.
+
+- `test/setup.ts` runs before every test file. It installs a **fresh `chrome` fake** (`test/fakes/chrome.ts`) on `globalThis` per test, then `vi.restoreAllMocks()` + `vi.useRealTimers()` in `afterEach`. Don't touch the real `chrome.*` namespace from tests — extend the fake instead, and grab it via the `chromeFake()` helper.
+- `test/fixtures/events.ts` provides canonical `ScheduleEvent` builders for storage/notification scenarios.
+- `globals: false` — import `describe`/`it`/`expect`/`vi` explicitly from `vitest`.
+- Tests compile under `tsconfig.test.json` (`target: es2020`, `module: esnext`, `moduleResolution: bundler`, `lib: ['es2020', 'dom']`), which is **distinct from `tsconfig.json` (`target: es5`, `module: commonjs`)** used for the production bundle. Code that only ever runs in tests can use modern syntax that webpack/ts-loader would still down-level for the shipped artifact, but be wary of relying on test-only DOM APIs in `src/` and assuming they're polyfilled in the bundle.
+- Run a single file: `pnpm test src/common/util/__tests__/badge.test.ts`. Run by name: `pnpm test -t 'pads single digits'`.
 
 ## Conventions
 
 - TypeScript: `target: es5`, `module: commonjs`, `strict: true`. Webpack does the bundling.
 - Prettier: `singleQuote`, `printWidth: 80`, `trailingComma: all`, `tabWidth: 2`, `arrowParens: avoid`.
-- `any` is forbidden by ESLint; the few existing `eslint-disable-next-line @typescript-eslint/no-explicit-any` comments are in the generic message bus and store — keep new code typed.
+- `any` is forbidden by ESLint; the existing `eslint-disable-next-line @typescript-eslint/no-explicit-any` comments are concentrated in the generic runtime-message bus (`src/common/background/index.ts`) plus a couple of catch-all error handlers — keep new code typed.
 - The `src/common/` barrel files (`index.ts`) re-export everything; importing from `'../common'` (or `'./common'`) is the established style rather than reaching into subpaths.
