@@ -1,0 +1,71 @@
+{
+  "ext_name": {
+    "message": "Schedule Extension for Garoon"
+  },
+  "ext_description": {
+    "message": "Garoon の予定通知と時刻表示を強化します。リマインダーで予定を見逃さず、現在時刻をひと目で把握できます。"
+  },
+  "setting": {
+    "message": "設定"
+  },
+  "options": {
+    "message": "オプション"
+  },
+  "opt_base_options_label": {
+    "message": "基本設定"
+  },
+  "opt_base_url_title": {
+    "message": "ベースURL"
+  },
+  "input_following_url_format": {
+    "message": "以下のフォーマットのベースURLを入力してください"
+  },
+  "opt_notification_title": {
+    "message": "通知設定"
+  },
+  "opt_notifies_events_label": {
+    "message": "予定を通知する"
+  },
+  "opt_notifies_require_auth_label": {
+    "message": "認証失敗時に通知する"
+  },
+  "ignore_event_name_keywords": {
+    "message": "無視するイベント名のキーワード (改行区切り)"
+  },
+  "save_options": {
+    "message": "設定を保存する"
+  },
+  "err_unauthenticated": {
+    "message": "認証されていません"
+  },
+  "err_no_base_url": {
+    "message": "ベースURLが設定されていません"
+  },
+  "refresh": {
+    "message": "更新"
+  },
+  "last_updated": {
+    "message": "最終更新"
+  },
+  "error_title": {
+    "message": "エラーが発生しました"
+  },
+  "failed_to_fetch": {
+    "message": "データを取得できませんでした"
+  },
+  "minutes_before": {
+    "message": "分前"
+  },
+  "saved": {
+    "message": "保存しました"
+  },
+  "today_schedule": {
+    "message": "今日の予定"
+  },
+  "no_events_today": {
+    "message": "今日の予定はありません"
+  },
+  "all_day": {
+    "message": "終日"
+  }
+}

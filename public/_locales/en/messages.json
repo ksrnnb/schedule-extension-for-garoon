@@ -1,0 +1,71 @@
+{
+  "ext_name": {
+    "message": "Schedule Extension for Garoon"
+  },
+  "ext_description": {
+    "message": "Enhances Garoon's event notifications and clock display. Reminders help you never miss a meeting, and the current time stays visible at a glance."
+  },
+  "setting": {
+    "message": "Setting"
+  },
+  "options": {
+    "message": "Option"
+  },
+  "opt_base_options_label": {
+    "message": "Basic Preference"
+  },
+  "opt_base_url_title": {
+    "message": "Garoon Base URL"
+  },
+  "input_following_url_format": {
+    "message": "Input following URL format."
+  },
+  "opt_notification_title": {
+    "message": "Notification preference"
+  },
+  "opt_notifies_events_label": {
+    "message": "Notifies events"
+  },
+  "opt_notifies_require_auth_label": {
+    "message": "Notifies authentication required"
+  },
+  "ignore_event_name_keywords": {
+    "message": "Ignore event name keywords (separate by line break)"
+  },
+  "save_options": {
+    "message": "Sace"
+  },
+  "err_unauthenticated": {
+    "message": "Unauthorized"
+  },
+  "err_no_base_url": {
+    "message": "No base URL"
+  },
+  "refresh": {
+    "message": "Refresh"
+  },
+  "last_updated": {
+    "message": "Last Updated"
+  },
+  "error_title": {
+    "message": "Error occurred"
+  },
+  "failed_to_fetch": {
+    "message": "Failed to fetch"
+  },
+  "minutes_before": {
+    "message": "min. before"
+  },
+  "saved": {
+    "message": "saved"
+  },
+  "today_schedule": {
+    "message": "Today's Schedule"
+  },
+  "no_events_today": {
+    "message": "No events today"
+  },
+  "all_day": {
+    "message": "All day"
+  }
+}

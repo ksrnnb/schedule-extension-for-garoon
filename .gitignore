@@ -1,0 +1,13 @@
+# OS
+.DS_Store
+
+# build
+dist/
+archive.zip
+
+# dependencies
+node_modules/
+
+# editor
+.idea/
+.vscode/
