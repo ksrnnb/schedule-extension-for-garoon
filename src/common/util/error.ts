@@ -14,12 +14,12 @@ import { t } from './message';
 import { notify } from './notification';
 
 export async function requireAuth(inAction?: boolean) {
-  const { notifiesRequireAuth, error, baseURL } = await store.load();
+  const { error, baseURL } = await store.load();
   const msg = t('err_unauthenticated');
 
   await setError(msg);
 
-  if (!inAction && notifiesRequireAuth && error !== msg) {
+  if (!inAction && error !== msg) {
     notify(
       {
         title: msg,

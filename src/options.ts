@@ -52,9 +52,9 @@ async function init() {
     'notify-minutes-before',
     `${v.notifyMinutesBefore || defaultConfig.notifyMinutesBefore}`,
   );
-  const notifiesRequireAuth = input(
-    'notifies-require-auth',
-    v.notifiesRequireAuth,
+  const showsTimeIndicator = input(
+    'shows-time-indicator',
+    v.showsTimeIndicator !== false,
   );
 
   const playsSound = input('plays-sound', v.playsSound);
@@ -109,10 +109,10 @@ async function init() {
         notifyMinutesBefore:
           parseInt(notifyMinutesBefore.value, 10) ||
           defaultConfig.notifyMinutesBefore,
-        notifiesRequireAuth: notifiesRequireAuth.checked,
         ignoreEventKeywords: ignoreEventKeywords.value,
         playsSound: playsSound.checked,
         soundVolume: clamp01(parseInt(soundVolume.value, 10) / 100),
+        showsTimeIndicator: showsTimeIndicator.checked,
       });
       const saved = document.querySelector<HTMLSpanElement>('.saved')!;
       saved.hidden = false;

@@ -26,9 +26,6 @@
   "opt_notifies_events_label": {
     "message": "予定を通知する"
   },
-  "opt_notifies_require_auth_label": {
-    "message": "認証失敗時に通知する"
-  },
   "ignore_event_name_keywords": {
     "message": "無視するイベント名のキーワード (改行区切り)"
   },
@@ -74,8 +71,11 @@
   "all_day": {
     "message": "終日"
   },
-  "opt_sound_title": {
-    "message": "通知音"
+  "opt_schedule_view_title": {
+    "message": "スケジュール表示"
+  },
+  "opt_shows_time_indicator_label": {
+    "message": "現在時刻のラインを表示する"
   },
   "opt_plays_sound_label": {
     "message": "予定通知時に音を鳴らす"

@@ -10,25 +10,25 @@ export interface Store {
 
   events?: ScheduleEvent[];
 
-  notifiesRequireAuth?: boolean;
-
   notifiesEvents?: boolean;
   notifyMinutesBefore?: number;
   ignoreEventKeywords: string;
 
   playsSound?: boolean;
   soundVolume?: number;
+
+  showsTimeIndicator?: boolean;
 }
 
 export const defaultConfig: Store = {
   refreshInMinutes: 1,
-  notifiesRequireAuth: true,
   notifiesEvents: true,
   ignoreEventKeywords: '',
   notifyMinutesBefore: 10,
   baseURL: '',
   playsSound: true,
   soundVolume: 0.6,
+  showsTimeIndicator: true,
 };
 
 const storageKey = 'grn.config';
