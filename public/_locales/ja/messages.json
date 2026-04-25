@@ -3,7 +3,7 @@
     "message": "Schedule Extension for Garoon"
   },
   "ext_description": {
-    "message": "Garoon の予定通知と時刻表示を強化します。リマインダーで予定を見逃さず、現在時刻をひと目で把握できます。"
+    "message": "Garoon の予定通知と時刻表示の機能を拡張します。リマインダーで予定を見逃さず、現在時刻をひと目で把握できます。"
   },
   "setting": {
     "message": "設定"
