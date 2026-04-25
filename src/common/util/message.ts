@@ -1,4 +1,4 @@
-export function __(key: string, defaultValue?: string) {
+export function t(key: string, defaultValue?: string) {
   const msg = chrome.i18n.getMessage(key);
   if (!msg && !defaultValue) {
     console.warn(`undefined message key: ${key}`);
@@ -24,8 +24,7 @@ export function timeString(d: Date, sep: string = ':'): string {
 
 export function timeZoneOffsetString(d: Date, sep: string = ':'): string {
   const offset = -d.getTimezoneOffset();
-  return [
-    offset < 0 ? '-' : '+' + zeroPad(Math.abs(offset / 60)),
-    zeroPad(Math.abs(offset % 60)),
-  ].join(sep);
+  const sign = offset < 0 ? '-' : '+';
+  const abs = Math.abs(offset);
+  return [sign + zeroPad(Math.floor(abs / 60)), zeroPad(abs % 60)].join(sep);
 }

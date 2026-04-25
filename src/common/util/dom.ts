@@ -1,9 +1,9 @@
-import { __ } from './message';
+import { t } from './message';
 
 export function localizeHTML() {
   document.body.innerHTML = document.body.innerHTML.replace(
     /__MSG_(\w+)__/g,
-    (name, key) => __(key, name),
+    (name, key) => t(key, name),
   );
 }
 
@@ -35,7 +35,7 @@ function appendChild(parent: HTMLElement, child: ChildNode) {
     typeof child === 'string'
       ? document.createTextNode(child)
       : typeof child === 'number'
-      ? document.createTextNode(`${child}`)
-      : child,
+        ? document.createTextNode(`${child}`)
+        : child,
   );
 }

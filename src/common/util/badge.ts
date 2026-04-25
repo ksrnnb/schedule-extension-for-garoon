@@ -29,14 +29,14 @@ export async function updateBadge() {
   }
 }
 
-function nextEventToday(
+export function nextEventToday(
   events: ScheduleEvent[] | undefined,
+  now: number = Date.now(),
 ): ScheduleEvent | undefined {
   if (!events) {
     return undefined;
   }
-  const now = Date.now();
-  const endOfToday = new Date();
+  const endOfToday = new Date(now);
   endOfToday.setHours(24, 0, 0, 0);
 
   return events.find(ev => {

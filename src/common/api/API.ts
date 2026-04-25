@@ -1,6 +1,39 @@
 import { ErrorResponse } from './ErrorResponse';
 import { Method, ScheduleEvent } from './type';
 
+// Build the rangeStart query parameter for /schedule/events: midnight local-time
+// of the same date one month before `today`, formatted as ISO-8601 with the
+// local UTC offset. JS Date normalises a negative month, so January rolls back
+// to the previous December automatically.
+export function buildScheduleEventsRangeStart(
+  today: Date = new Date(),
+): string {
+  const d = new Date(
+    today.getFullYear(),
+    today.getMonth() - 1,
+    today.getDate(),
+  );
+  const offset = -d.getTimezoneOffset();
+
+  return (
+    d.getFullYear() +
+    '-' +
+    ('0' + (d.getMonth() + 1)).slice(-2) +
+    '-' +
+    ('0' + d.getDate()).slice(-2) +
+    'T' +
+    ('0' + d.getHours()).slice(-2) +
+    ':' +
+    ('0' + d.getMinutes()).slice(-2) +
+    ':' +
+    ('0' + d.getSeconds()).slice(-2) +
+    (offset < 0 ? '-' : '+') +
+    ('0' + Math.floor(Math.abs(offset) / 60)).slice(-2) +
+    ':' +
+    ('0' + (Math.abs(offset) % 60)).slice(-2)
+  );
+}
+
 /**
  * Garoon API request client.
  *
@@ -31,26 +64,7 @@ export class GaroonAPI {
 
   // see, https://developer.cybozu.io/hc/ja/articles/360000440583
   async getScheduleEvents() {
-    const tod = new Date();
-    const d = new Date(tod.getFullYear(), tod.getMonth() - 1, tod.getDate());
-    const offset = -d.getTimezoneOffset();
-
-    const start =
-      d.getFullYear() +
-      '-' +
-      ('0' + (d.getMonth() + 1)).slice(-2) +
-      '-' +
-      ('0' + d.getDate()).slice(-2) +
-      'T' +
-      ('0' + d.getHours()).slice(-2) +
-      ':' +
-      ('0' + d.getMinutes()).slice(-2) +
-      ':' +
-      ('0' + d.getSeconds()).slice(-2) +
-      (offset > 0 ? '+' : '-') +
-      ('0' + Math.floor(Math.abs(offset) / 60)).slice(-2) +
-      ':' +
-      ('0' + (Math.abs(offset) % 60)).slice(-2);
+    const start = buildScheduleEventsRangeStart();
     return this.get<{
       hasNext: boolean;
       events: ScheduleEvent[];

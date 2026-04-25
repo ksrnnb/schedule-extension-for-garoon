@@ -25,12 +25,12 @@ const STYLE = `
   }
 `;
 
-interface ColumnRange {
+export interface ColumnRange {
   startMinute: number;
   endMinute: number;
 }
 
-function todayDateString(now: Date = new Date()): string {
+export function todayDateString(now: Date = new Date()): string {
   // toISOString is UTC and shifts the date in non-UTC timezones, so build
   // the YYYY-MM-DD string from local components.
   const y = now.getFullYear();
@@ -39,11 +39,11 @@ function todayDateString(now: Date = new Date()): string {
   return `${y}-${m}-${d}`;
 }
 
-function nowMinutes(now: Date = new Date()): number {
+export function nowMinutes(now: Date = new Date()): number {
   return now.getHours() * 60 + now.getMinutes();
 }
 
-function isTodayBdate(bdate: string | undefined): boolean {
+export function isTodayBdate(bdate: string | undefined): boolean {
   if (!bdate) return false;
   // Garoon emits both YYYY-MM-DD (zero-padded, e.g. all-day cells) and
   // YYYY-M-D (no padding, e.g. time-row attributes). Compare numerically.
@@ -113,7 +113,7 @@ function findTodayColumn(): HTMLElement | null {
   return null;
 }
 
-function readColumnRange(column: HTMLElement): ColumnRange | null {
+export function readColumnRange(column: HTMLElement): ColumnRange | null {
   const rows = column.querySelectorAll<HTMLElement>(
     '.personal_day_calendar_time_row',
   );

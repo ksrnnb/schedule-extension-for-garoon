@@ -1,12 +1,12 @@
 import { isFetchError, ErrorResponse } from '../api';
 import * as store from '../store';
 import { updateBadge } from './badge';
-import { __ } from './message';
+import { t } from './message';
 import { notify } from './notification';
 
 export async function requireAuth(inAction?: boolean) {
   const { notifiesRequireAuth, error, baseURL } = await store.load();
-  const msg = __('err_unauthenticated');
+  const msg = t('err_unauthenticated');
 
   await setError(msg);
 
@@ -38,7 +38,7 @@ export async function clearError() {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function handleError(err: any, inAction?: boolean) {
   if (isFetchError(err)) {
-    await setError(__('failed_to_fetch'));
+    await setError(t('failed_to_fetch'));
     return;
   }
 

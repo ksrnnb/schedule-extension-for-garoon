@@ -1,6 +1,7 @@
 export * from './badge';
 export * from './dom';
 export * from './error';
+export * from './eventFilter';
 export * from './message';
 export * from './notification';
 export * from './sound';

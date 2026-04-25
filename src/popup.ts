@@ -1,5 +1,5 @@
 import {
-  __,
+  t,
   localizeHTML,
   newElem,
   scheduleURL,
@@ -41,7 +41,8 @@ const refreshButton = () => elem<HTMLButtonElement>('.refresh-button');
 const portalOpener = () => elem<HTMLAnchorElement>('.portal-opener');
 const errorContainer = () => elem<HTMLDivElement>('.error-container');
 const errorMessage = () => elem<HTMLDivElement>('.error-message');
-const eventsList = () => elem<HTMLUListElement>('.events-list:not(.allday-events-list)');
+const eventsList = () =>
+  elem<HTMLUListElement>('.events-list:not(.allday-events-list)');
 const allDayEventsContainer = () =>
   elem<HTMLElement>('.allday-events-container');
 const allDayEventsList = () => elem<HTMLUListElement>('.allday-events-list');
@@ -128,10 +129,10 @@ function buildEventItem(
   const isOngoing = !ev.isAllDay && !isPast && startTime <= now;
 
   const timeLabel = ev.isAllDay
-    ? __('all_day')
+    ? t('all_day')
     : end && !ev.isStartOnly
-    ? `${timeString(start)} - ${timeString(end)}`
-    : timeString(start);
+      ? `${timeString(start)} - ${timeString(end)}`
+      : timeString(start);
 
   const link = newElem('a', {
     className: 'event-link',
@@ -152,8 +153,8 @@ function buildEventItem(
   const stateClass = isPast
     ? ' event-item--past'
     : isOngoing
-    ? ' event-item--ongoing'
-    : '';
+      ? ' event-item--ongoing'
+      : '';
 
   return newElem('li', {
     className: `event-item${stateClass}`,
