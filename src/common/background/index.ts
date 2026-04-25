@@ -4,7 +4,7 @@ export const Type = {
   Update: 'msg_update',
   PlaySound: 'msg_play_sound',
 } as const;
-export type Type = typeof Type[keyof typeof Type];
+export type Type = (typeof Type)[keyof typeof Type];
 
 export interface Message {
   type: Type;

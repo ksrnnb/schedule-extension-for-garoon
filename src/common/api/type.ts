@@ -11,14 +11,15 @@ export const EventType = {
   Repeating: 'REPEATING',
   AllDay: 'ALL_DAY',
 } as const;
-export type EventType = typeof EventType[keyof typeof EventType];
+export type EventType = (typeof EventType)[keyof typeof EventType];
 
 export const VisibilityType = {
   Public: 'PUBLIC',
   Private: 'PRIVATE',
   SetPrivateWatchers: 'SET_PRIVATE_WATCHERS',
 } as const;
-export type VisibilityType = typeof VisibilityType[keyof typeof VisibilityType];
+export type VisibilityType =
+  (typeof VisibilityType)[keyof typeof VisibilityType];
 
 export interface CompanyInfo {
   address: string;
@@ -56,7 +57,7 @@ export const AttendeeType = {
   User: 'USER',
   Organization: 'ORGANIZATION',
 } as const;
-export type AttendeeType = typeof AttendeeType[keyof typeof AttendeeType];
+export type AttendeeType = (typeof AttendeeType)[keyof typeof AttendeeType];
 
 export interface Watcher extends User {
   type: WatcherType;
@@ -67,7 +68,7 @@ export const WatcherType = {
   Organization: 'ORGANIZATION',
   Role: 'ROLE',
 } as const;
-export type WatcherType = typeof WatcherType[keyof typeof WatcherType];
+export type WatcherType = (typeof WatcherType)[keyof typeof WatcherType];
 
 export interface Facility {
   id: string;
@@ -104,7 +105,7 @@ export const DayOfWeek = {
   Sat: 'SAT',
   Sun: 'SUN',
 } as const;
-export type DayOfWeek = typeof DayOfWeek[keyof typeof DayOfWeek];
+export type DayOfWeek = (typeof DayOfWeek)[keyof typeof DayOfWeek];
 
 export type DayOfMonth =
   | '1'
@@ -150,14 +151,15 @@ export const RepeatType = {
   EveryLastWeek: 'EVERY_LASTWEEK',
   EveryMonth: 'EVERY_MONTH',
 } as const;
-export type RepeatType = typeof RepeatType[keyof typeof RepeatType];
+export type RepeatType = (typeof RepeatType)[keyof typeof RepeatType];
 
 export const RepeatRangeType = {
   ThisEventOnly: 'THIS_EVENT_ONLY',
   OnAndAfterThisEvent: 'ON_AND_AFTER_THIS_EVENT',
   AllEvent: 'ALL_EVENT',
 } as const;
-export type RepeatRangeType = typeof RepeatRangeType[keyof typeof RepeatRangeType];
+export type RepeatRangeType =
+  (typeof RepeatRangeType)[keyof typeof RepeatRangeType];
 
 export interface ScheduleEvent {
   id: string;
@@ -185,4 +187,3 @@ export interface ScheduleEvent {
   facilityUsingPurpose?: string;
   repeatInfo: RepeatInfo;
 }
-

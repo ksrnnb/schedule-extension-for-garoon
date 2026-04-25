@@ -1,6 +1,7 @@
 import { Configuration } from 'webpack';
 import path from 'path';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import ESLintPlugin from 'eslint-webpack-plugin';
 import MiniCSSExtractPlugin from 'mini-css-extract-plugin';
 
 const devEnv = 'development';
@@ -59,6 +60,11 @@ const config: Configuration = {
     extensions: ['.ts', '.js'],
   },
   plugins: [
+    new ESLintPlugin({
+      configType: 'flat',
+      extensions: ['ts'],
+      failOnError: !isDev,
+    }),
     new CopyWebpackPlugin({
       patterns: [{ from: 'public', to: '.' }],
     }),
