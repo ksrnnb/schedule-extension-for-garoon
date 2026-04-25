@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Garoon Notificator Option</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="options.js"></script>
+</head>
+<body>
+  <div class="options-page">
+    <header class="opt-header">
+      <h1 class="opt-title">
+        <img class="opt-logo" src="icon/icon-128.png" role="presentation" alt="__MSG_ext_name__">
+        __MSG_options__
+      </h1>
+    </header>
+    <form id="ext-options">
+      <div class="card block">
+        <div class="card-header">
+          <div class="card-title">__MSG_opt_base_options_label__</div>
+        </div>
+        <div class="card-body">
+          <label for="base-url">__MSG_opt_base_url_title__</label>
+          <div class="input-group">
+            <input class="input" id="base-url" name="base-url">
+          </div>
+          <div class="note sub-block">
+            <p>__MSG_input_following_url_format__</p>
+            <ul>
+              <li>https://{sub-domain}.cybozu.com/g/</li>
+              <li>https://{server-address}/scripts/{install-id}/grn.exe</li>
+              <li>https://{server-address}/cgi-bin/{install-id}/grn.cgi</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card block">
+        <div class="card-header">
+          <div class="card-title">__MSG_opt_notification_title__</div>
+        </div>
+        <div class="card-body">
+          <div class="checkbox-container sub-block">
+            <label>
+              <input type="checkbox" name="notifies-events" class="checkbox">
+              __MSG_opt_notifies_events_label__
+            </label>
+            <div class="sub-block">
+              <div class="input-group notify-minutes-before">
+                <input class="input" type="number" name="notify-minutes-before" min="0" max="60">
+                <span class="input-group-text">__MSG_minutes_before__</span>
+              </div>
+            </div>
+            <div class="sub-block">
+              <label for="ignore-event-keywords">__MSG_ignore_event_name_keywords__</label>
+              <div class="input-group">
+                <textarea class="input" name="ignore-event-keywords"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="checkbox-container sub-block">
+            <label>
+              <input type="checkbox" class="checkbox" name="notifies-require-auth">
+              __MSG_opt_notifies_require_auth_label__
+            </label>
+          </div>
+        </div>
+      </div>
+      <footer class="footer block">
+        <span class="save-button-container">
+          <button class="primary-button save-button" type="submit">__MSG_save_options__</button>
+          <span class="saved" hidden>__MSG_saved__</span>
+        </span>
+      </footer>
+    </form>
+  </div>
+</body>
+</html>

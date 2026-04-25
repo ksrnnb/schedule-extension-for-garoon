@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_ext_name__",
+  "version": "0.0.1",
+
+  "author": "Kyota Okabe",
+
+  "description": "__MSG_ext_description__",
+  "icons": {
+    "16": "icon/icon-16.png",
+    "32": "icon/icon-32.png",
+    "48": "icon/icon-48.png",
+    "128": "icon/icon-128.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icon/icon-16.png",
+      "32": "icon/icon-32.png",
+      "48": "icon/icon-48.png",
+      "128": "icon/icon-128.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "default_locale": "ja",
+  "permissions": ["alarms", "notifications", "storage"],
+  "host_permissions": ["https://*/"],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }
+}
