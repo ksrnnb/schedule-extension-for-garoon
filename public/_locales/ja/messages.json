@@ -41,6 +41,9 @@
   "err_no_base_url": {
     "message": "ベースURLが設定されていません"
   },
+  "err_invalid_base_url": {
+    "message": "クラウド版 Garoon のURL（*.cybozu.com）を入力してください"
+  },
   "refresh": {
     "message": "更新"
   },

@@ -1,4 +1,5 @@
 export * from './badge';
+export * from './baseUrl';
 export * from './dom';
 export * from './error';
 export * from './eventFilter';
