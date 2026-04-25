@@ -14,6 +14,10 @@ export function timeString(d: Date, sep: string = ':'): string {
   return [d.getHours(), d.getMinutes()].map(n => zeroPad(n, 2)).join(sep);
 }
 
+export function badgeTimeString(d: Date, sep: string = ':'): string {
+  return [String(d.getHours()), zeroPad(d.getMinutes())].join(sep);
+}
+
 export function timeZoneOffsetString(d: Date, sep: string = ':'): string {
   const offset = -d.getTimezoneOffset();
   const sign = offset < 0 ? '-' : '+';

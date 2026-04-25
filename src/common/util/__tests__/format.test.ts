@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
+  badgeTimeString,
   dateString,
   timeString,
   timeZoneOffsetString,
@@ -55,6 +56,28 @@ describe('timeString', () => {
   it('honours custom separator', () => {
     const d = new Date(2026, 3, 25, 0, 0);
     expect(timeString(d, '-')).toBe('00-00');
+  });
+});
+
+describe('badgeTimeString', () => {
+  it('does not zero-pad single-digit hours', () => {
+    const d = new Date(2026, 3, 25, 8, 0);
+    expect(badgeTimeString(d)).toBe('8:00');
+  });
+
+  it('keeps two-digit hours intact', () => {
+    const d = new Date(2026, 3, 25, 14, 0);
+    expect(badgeTimeString(d)).toBe('14:00');
+  });
+
+  it('zero-pads single-digit minutes', () => {
+    const d = new Date(2026, 3, 25, 9, 7);
+    expect(badgeTimeString(d)).toBe('9:07');
+  });
+
+  it('honours custom separator', () => {
+    const d = new Date(2026, 3, 25, 8, 30);
+    expect(badgeTimeString(d, '.')).toBe('8.30');
   });
 });
 

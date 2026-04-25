@@ -1,6 +1,6 @@
 import { ScheduleEvent } from '../api';
 import { icons } from '../constants';
-import { dateString, timeString } from './format';
+import { badgeTimeString, dateString, timeString } from './format';
 import * as store from '../store';
 
 export async function updateBadge() {
@@ -22,7 +22,7 @@ export async function updateBadge() {
   const next = nextEventToday(events);
   if (next) {
     const start = new Date(next.start.dateTime);
-    chrome.action.setBadgeText({ text: timeString(start) });
+    chrome.action.setBadgeText({ text: badgeTimeString(start) });
     chrome.action.setBadgeBackgroundColor({ color: '#1f6feb' });
   } else {
     chrome.action.setBadgeText({ text: '' });
