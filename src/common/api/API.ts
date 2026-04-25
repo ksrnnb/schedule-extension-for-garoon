@@ -1,3 +1,4 @@
+import { zeroPad } from '../util';
 import { ErrorResponse } from './ErrorResponse';
 import { Method, ScheduleEvent } from './type';
 
@@ -18,19 +19,19 @@ export function buildScheduleEventsRangeStart(
   return (
     d.getFullYear() +
     '-' +
-    ('0' + (d.getMonth() + 1)).slice(-2) +
+    zeroPad(d.getMonth() + 1) +
     '-' +
-    ('0' + d.getDate()).slice(-2) +
+    zeroPad(d.getDate()) +
     'T' +
-    ('0' + d.getHours()).slice(-2) +
+    zeroPad(d.getHours()) +
     ':' +
-    ('0' + d.getMinutes()).slice(-2) +
+    zeroPad(d.getMinutes()) +
     ':' +
-    ('0' + d.getSeconds()).slice(-2) +
+    zeroPad(d.getSeconds()) +
     (offset < 0 ? '-' : '+') +
-    ('0' + Math.floor(Math.abs(offset) / 60)).slice(-2) +
+    zeroPad(Math.floor(Math.abs(offset) / 60)) +
     ':' +
-    ('0' + (Math.abs(offset) % 60)).slice(-2)
+    zeroPad(Math.abs(offset) % 60)
   );
 }
 
