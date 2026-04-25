@@ -41,7 +41,10 @@ const refreshButton = () => elem<HTMLButtonElement>('.refresh-button');
 const portalOpener = () => elem<HTMLAnchorElement>('.portal-opener');
 const errorContainer = () => elem<HTMLDivElement>('.error-container');
 const errorMessage = () => elem<HTMLDivElement>('.error-message');
-const eventsList = () => elem<HTMLUListElement>('.events-list');
+const eventsList = () => elem<HTMLUListElement>('.events-list:not(.allday-events-list)');
+const allDayEventsContainer = () =>
+  elem<HTMLElement>('.allday-events-container');
+const allDayEventsList = () => elem<HTMLUListElement>('.allday-events-list');
 const noEvents = () => elem<HTMLParagraphElement>('.no-events');
 
 async function refresh() {
@@ -84,7 +87,9 @@ async function setError() {
 async function setEvents() {
   const { events, baseURL } = await store.load();
   const list = eventsList();
+  const allDayList = allDayEventsList();
   list.replaceChildren();
+  allDayList.replaceChildren();
 
   const now = Date.now();
   const todayStart = new Date();
@@ -98,8 +103,16 @@ async function setEvents() {
     return start < tomorrowStart.getTime() && end > todayStart.getTime();
   });
 
+  const allDays = todays.filter(ev => ev.isAllDay);
+  const timed = todays.filter(ev => !ev.isAllDay);
+
+  allDayEventsContainer().hidden = allDays.length === 0;
+  allDays.forEach(ev =>
+    allDayList.appendChild(buildEventItem(ev, baseURL, now)),
+  );
+
   noEvents().hidden = todays.length > 0;
-  todays.forEach(ev => list.appendChild(buildEventItem(ev, baseURL, now)));
+  timed.forEach(ev => list.appendChild(buildEventItem(ev, baseURL, now)));
 }
 
 function buildEventItem(

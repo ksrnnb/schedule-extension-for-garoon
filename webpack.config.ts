@@ -19,6 +19,7 @@ const config: Configuration = {
     background: path.resolve(__dirname, 'src/background.ts'),
     options: path.resolve(__dirname, 'src/options.ts'),
     popup: path.resolve(__dirname, 'src/popup.ts'),
+    offscreen: path.resolve(__dirname, 'src/offscreen.ts'),
     style: path.resolve(__dirname, 'src/css/style.scss'),
   },
   output: {

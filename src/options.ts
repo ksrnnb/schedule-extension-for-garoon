@@ -1,7 +1,7 @@
 import * as store from './common/store';
 import { defaultConfig } from './common/store';
 
-import { localizeHTML } from './common/util';
+import { localizeHTML, playChime } from './common/util';
 
 function input(
   name: string,
@@ -31,6 +31,11 @@ function textarea(
   return elem;
 }
 
+function clamp01(n: number): number {
+  if (Number.isNaN(n)) return defaultConfig.soundVolume!;
+  return Math.max(0, Math.min(1, n));
+}
+
 async function init() {
   localizeHTML();
 
@@ -51,6 +56,42 @@ async function init() {
     v.notifiesRequireAuth,
   );
 
+  const playsSound = input('plays-sound', v.playsSound);
+  const soundVolume = input(
+    'sound-volume',
+    `${Math.round(clamp01(v.soundVolume ?? defaultConfig.soundVolume!) * 100)}`,
+  );
+  const soundVolumeValue = document.querySelector<HTMLSpanElement>(
+    '.sound-volume-value',
+  )!;
+  const testSoundButton = document.querySelector<HTMLButtonElement>(
+    'button[name=test-sound]',
+  )!;
+
+  const updateVolumeLabel = () => {
+    soundVolumeValue.textContent = `${soundVolume.value}%`;
+  };
+  const updateSoundControlsEnabled = () => {
+    const enabled = playsSound.checked;
+    soundVolume.disabled = !enabled;
+    testSoundButton.disabled = !enabled;
+  };
+
+  updateVolumeLabel();
+  updateSoundControlsEnabled();
+
+  soundVolume.addEventListener('input', updateVolumeLabel);
+  playsSound.addEventListener('change', updateSoundControlsEnabled);
+
+  testSoundButton.addEventListener('click', async () => {
+    const volume = clamp01(parseInt(soundVolume.value, 10) / 100);
+    try {
+      await playChime(volume);
+    } catch (e) {
+      console.warn('test play failed', e);
+    }
+  });
+
   document
     .querySelector('#ext-options')!
     .addEventListener('submit', async ev => {
@@ -63,6 +104,8 @@ async function init() {
           defaultConfig.notifyMinutesBefore,
         notifiesRequireAuth: notifiesRequireAuth.checked,
         ignoreEventKeywords: ignoreEventKeywords.value,
+        playsSound: playsSound.checked,
+        soundVolume: clamp01(parseInt(soundVolume.value, 10) / 100),
       });
       const saved = document.querySelector<HTMLSpanElement>('.saved')!;
       saved.hidden = false;

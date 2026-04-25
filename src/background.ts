@@ -6,6 +6,7 @@ import {
   clearError,
   initNotificationEvent,
   notify,
+  playChime,
   requireAuth,
   setError,
   timeString,
@@ -59,6 +60,9 @@ async function notifyEvents() {
     notifiesEvents,
     notifyMinutesBefore,
     ignoreEventKeywords,
+    playsSound,
+    soundVolume,
+    baseURL,
   } = await store.load();
   if (!notifiesEvents) {
     return;
@@ -71,7 +75,6 @@ async function notifyEvents() {
     .filter(Boolean);
 
   const curMin = Math.round(Date.now() / 60000);
-  const { baseURL } = await store.load();
   events
     ?.filter(ev => {
       const subject = ev.subject.toLowerCase();
@@ -87,12 +90,18 @@ async function notifyEvents() {
           baseURL &&
             `${baseURL.replace(/\/+$/, '')}/schedule/view?event=${ev.id}`,
           duration,
+          playsSound ? soundVolume : undefined,
         );
       }
     });
 }
 
-async function notifyEvent(ev: ScheduleEvent, url?: string, duration?: number) {
+async function notifyEvent(
+  ev: ScheduleEvent,
+  url?: string,
+  duration?: number,
+  volume?: number,
+) {
   const title = ev.eventMenu ? `${ev.eventMenu}: ${ev.subject}` : ev.subject;
   notify(
     {
@@ -110,6 +119,9 @@ async function notifyEvent(ev: ScheduleEvent, url?: string, duration?: number) {
       },
     },
   );
+  if (volume !== undefined) {
+    playChime(volume).catch(e => console.warn('playChime failed', e));
+  }
 }
 
 function run() {

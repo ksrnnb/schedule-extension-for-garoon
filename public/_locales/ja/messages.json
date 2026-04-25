@@ -62,10 +62,25 @@
   "today_schedule": {
     "message": "今日の予定"
   },
+  "all_day_schedule": {
+    "message": "終日予定"
+  },
   "no_events_today": {
     "message": "今日の予定はありません"
   },
   "all_day": {
     "message": "終日"
+  },
+  "opt_sound_title": {
+    "message": "通知音"
+  },
+  "opt_plays_sound_label": {
+    "message": "予定通知時に音を鳴らす"
+  },
+  "opt_sound_volume_label": {
+    "message": "音量"
+  },
+  "opt_test_sound_button": {
+    "message": "テスト再生"
   }
 }

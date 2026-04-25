@@ -62,10 +62,25 @@
   "today_schedule": {
     "message": "Today's Schedule"
   },
+  "all_day_schedule": {
+    "message": "All-day Events"
+  },
   "no_events_today": {
     "message": "No events today"
   },
   "all_day": {
     "message": "All day"
+  },
+  "opt_sound_title": {
+    "message": "Notification sound"
+  },
+  "opt_plays_sound_label": {
+    "message": "Play a chime when notifying events"
+  },
+  "opt_sound_volume_label": {
+    "message": "Volume"
+  },
+  "opt_test_sound_button": {
+    "message": "Test play"
   }
 }
