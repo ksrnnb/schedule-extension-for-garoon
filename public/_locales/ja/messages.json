@@ -1,9 +1,9 @@
 {
   "ext_name": {
-    "message": "Garoon Schedule Notifier"
+    "message": "Garoon スケジュール通知"
   },
   "ext_description": {
-    "message": "Garoon の予定通知を強化します。リマインダーで予定を見逃しません。"
+    "message": "Garoon のスケジュール通知を強化します。リマインダーで予定を見逃しません。"
   },
   "setting": {
     "message": "設定"
