@@ -29,12 +29,11 @@ To load the extension locally: `pnpm build:dev`, then in `chrome://extensions` (
 
 ## Architecture
 
-The five webpack entry points in `webpack.config.ts` map directly to MV3 surfaces (everything in `src/` is bundled into `dist/<name>.js`):
+The webpack entry points in `webpack.config.ts` map directly to MV3 surfaces (everything in `src/` is bundled into `dist/<name>.js`):
 
 | Entry | File | Surface |
 | --- | --- | --- |
 | `background` | `src/background.ts` | MV3 service worker |
-| `content_scripts` | `src/content_scripts.ts` | Injected into `https://*.cybozu.com/g/*` |
 | `popup` | `src/popup.ts` (+ `public/popup.html`) | Toolbar popup |
 | `options` | `src/options.ts` (+ `public/options.html`) | Options page (`open_in_tab`) |
 | `offscreen` | `src/offscreen.ts` (+ `public/offscreen.html`) | Offscreen document for audio playback |
@@ -73,15 +72,6 @@ background.ts notifyEvent()
 ### Typed runtime-message bus
 
 `src/common/background/index.ts` is a small wrapper around `chrome.runtime.sendMessage` / `onMessage` with two types: `Type.Update` (popup → background, "refresh now") and `Type.PlaySound` (background → offscreen). Add new cross-context calls here rather than calling `chrome.runtime` directly — listeners are registered/unregistered via the returned `UnregisterFunc`, and errors flow through `handleError`.
-
-### Content script: "now" indicator on the schedule grid
-
-`src/content/timeIndicator.ts` overlays a red horizontal line on Garoon's day/week schedule view. Two non-obvious gotchas worth preserving:
-
-- **Week-view column ids freeze at first render** — to find the column for "today", iterate `td.personal_week_calendar_date_cell` and pick the index where `aria-current === 'date'`, or fall back to the all-day cell whose `data-bdate` matches today. Don't rely on the column id matching the displayed date.
-- **`data-bdate` formats are inconsistent** — all-day cells use zero-padded `YYYY-MM-DD`, time rows use unpadded `YYYY-M-D`. `isTodayBdate()` matches both via regex + numeric comparison.
-
-The script renders via a `requestAnimationFrame`-debounced `schedule()` triggered by a `MutationObserver` on `document.body`, plus a minute-aligned `setTimeout` chain and `scroll`/`resize` listeners. An `AbortController` and a returned cleanup function tear everything down — call sites currently don't use it but preserve the contract.
 
 ### Storage shape
 

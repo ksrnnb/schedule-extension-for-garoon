@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "__MSG_ext_name__",
-  "version": "0.0.1",
-  "author": "Kyota Okabe",
+  "version": "0.0.2",
+  "author": "okarin",
   "description": "__MSG_ext_description__",
   "icons": {
     "16": "icon/icon-16.png",
@@ -22,16 +22,16 @@
   "background": {
     "service_worker": "background.js"
   },
-  "content_scripts": [
-    {
-      "js": ["content_scripts.js"],
-      "matches": ["https://*.cybozu.com/g/*"],
-      "run_at": "document_idle"
-    }
-  ],
   "default_locale": "ja",
-  "permissions": ["alarms", "notifications", "storage", "offscreen"],
-  "host_permissions": ["https://*.cybozu.com/*"],
+  "permissions": [
+    "alarms",
+    "notifications",
+    "storage",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "https://*.cybozu.com/*"
+  ],
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true

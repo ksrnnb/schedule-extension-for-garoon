@@ -1,5 +1,5 @@
-A Chrome extension that enhances Garoon's event notifications and clock display.
-Get desktop reminders so you never miss a meeting, and see the current time at a glance.
+A Chrome extension that enhances Garoon's event notifications.
+Get desktop reminders so you never miss a meeting.
 
 [Features]
 
@@ -13,11 +13,6 @@ Get desktop reminders so you never miss a meeting, and see the current time at a
 - Today's schedule popup
   Clicking the toolbar icon opens a popup listing today's events,
   marked as finished, in progress, or upcoming.
-
-- Current-time line
-  A red line indicating the current time is overlaid on Garoon's day and week views.
-  Note: this feature relies on Garoon's DOM structure rather than a public API,
-  so updates to Garoon may break it.
 
 [How to use]
 
@@ -53,4 +48,4 @@ by Shinya Kamiaka, also licensed under MIT.
 
 [Source code]
 
-https://github.com/ksrnnb/schedule-extension-for-garoon
+https://github.com/ksrnnb/garoon-schedule-notifier

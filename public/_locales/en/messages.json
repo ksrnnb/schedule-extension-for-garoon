@@ -1,9 +1,9 @@
 {
   "ext_name": {
-    "message": "Schedule Extension for Garoon"
+    "message": "Garoon Schedule Notifier"
   },
   "ext_description": {
-    "message": "Enhances Garoon's event notifications and clock display. Never miss a meeting, and see the current time at a glance."
+    "message": "Enhances Garoon's event notifications. Never miss a meeting."
   },
   "setting": {
     "message": "Setting"
@@ -70,12 +70,6 @@
   },
   "all_day": {
     "message": "All day"
-  },
-  "opt_schedule_view_title": {
-    "message": "Schedule view"
-  },
-  "opt_shows_time_indicator_label": {
-    "message": "Show current time line"
   },
   "opt_plays_sound_label": {
     "message": "Play a chime when notifying events"

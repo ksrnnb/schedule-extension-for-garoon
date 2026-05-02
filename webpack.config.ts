@@ -16,7 +16,6 @@ const config: Configuration = {
   mode: 'production',
   devtool: 'inline-source-map',
   entry: {
-    content_scripts: path.resolve(__dirname, 'src/content_scripts.ts'),
     background: path.resolve(__dirname, 'src/background.ts'),
     options: path.resolve(__dirname, 'src/options.ts'),
     popup: path.resolve(__dirname, 'src/popup.ts'),

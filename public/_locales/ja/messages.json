@@ -1,9 +1,9 @@
 {
   "ext_name": {
-    "message": "Schedule Extension for Garoon"
+    "message": "Garoon Schedule Notifier"
   },
   "ext_description": {
-    "message": "Garoon の予定通知と時刻表示の機能を拡張します。リマインダーで予定を見逃さず、現在時刻をひと目で把握できます。"
+    "message": "Garoon の予定通知を強化します。リマインダーで予定を見逃しません。"
   },
   "setting": {
     "message": "設定"
@@ -70,12 +70,6 @@
   },
   "all_day": {
     "message": "終日"
-  },
-  "opt_schedule_view_title": {
-    "message": "スケジュール表示"
-  },
-  "opt_shows_time_indicator_label": {
-    "message": "現在時刻のラインを表示する"
   },
   "opt_plays_sound_label": {
     "message": "予定通知時に音を鳴らす"

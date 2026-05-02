@@ -16,8 +16,6 @@ export interface Store {
 
   playsSound?: boolean;
   soundVolume?: number;
-
-  showsTimeIndicator?: boolean;
 }
 
 export const defaultConfig: Store = {
@@ -28,7 +26,6 @@ export const defaultConfig: Store = {
   baseURL: '',
   playsSound: true,
   soundVolume: 0.6,
-  showsTimeIndicator: true,
 };
 
 const storageKey = 'grn.config';
