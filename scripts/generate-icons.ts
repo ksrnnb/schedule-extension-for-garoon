@@ -8,7 +8,7 @@ const OUT = path.join(ROOT, 'public/icon');
 
 const SIZES = [16, 32, 48, 128] as const;
 const VARIANTS: ReadonlyArray<{ suffix: string; color: string }> = [
-  { suffix: '', color: '#EAB308' },
+  { suffix: '', color: '#1B95D5' },
   { suffix: '-gray', color: '#93959C' },
 ];
 
