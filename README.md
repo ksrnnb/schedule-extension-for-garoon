@@ -27,7 +27,7 @@ pnpm install
 pnpm build:dev   # 開発ビルド（dist/ に出力）
 pnpm build       # 本番ビルド（NODE_ENV=production）+ scripts/zip.sh で archive.zip を生成
 pnpm start       # webpack --watch（ファイル変更を監視）
-pnpm icons       # src/icon/calendar.svg から sharp で PNG アイコンを再生成
+pnpm icons       # src/icon/bell.svg から sharp で PNG アイコンを再生成
 ```
 
 ## 謝辞

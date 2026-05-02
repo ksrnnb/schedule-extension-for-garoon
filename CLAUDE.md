@@ -20,7 +20,7 @@ pnpm lint        # eslint src
 pnpm lint:fix    # eslint src --fix
 pnpm test        # vitest run
 pnpm test:watch  # vitest (watch mode)
-pnpm icons       # regenerate public/icon/icon-{16,32,48,128}{,-gray}.png from src/icon/calendar.svg via sharp
+pnpm icons       # regenerate public/icon/icon-{16,32,48,128}{,-gray}.png from src/icon/bell.svg via sharp
 ```
 
 ESLint runs as part of every webpack build via `eslint-webpack-plugin` (`configType: 'flat'`, `failOnError: !isDev`). Config is `eslint.config.mjs` (flat config, ESLint 9). Two rules are active: `@typescript-eslint/no-explicit-any: error` and `prettier/prettier: error` with project-specific Prettier options inlined. Standalone `pnpm lint` is also available for CI / pre-commit use.

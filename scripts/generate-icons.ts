@@ -3,12 +3,12 @@ import * as fs from 'fs';
 import sharp from 'sharp';
 
 const ROOT = path.resolve(__dirname, '..');
-const SRC = path.join(ROOT, 'src/icon/calendar.svg');
+const SRC = path.join(ROOT, 'src/icon/bell.svg');
 const OUT = path.join(ROOT, 'public/icon');
 
 const SIZES = [16, 32, 48, 128] as const;
 const VARIANTS: ReadonlyArray<{ suffix: string; color: string }> = [
-  { suffix: '', color: '#0EA5E9' },
+  { suffix: '', color: '#EAB308' },
   { suffix: '-gray', color: '#93959C' },
 ];
 
