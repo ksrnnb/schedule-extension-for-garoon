@@ -70,25 +70,20 @@ async function notifyEvents() {
         ev,
         baseURL &&
           `${baseURL.replace(/\/+$/, '')}/schedule/view?event=${ev.id}`,
-        duration,
         playsSound ? soundVolume : undefined,
       );
     },
   );
 }
 
-async function notifyEvent(
-  ev: ScheduleEvent,
-  url?: string,
-  duration?: number,
-  volume?: number,
-) {
-  const title = ev.eventMenu ? `${ev.eventMenu}: ${ev.subject}` : ev.subject;
+async function notifyEvent(ev: ScheduleEvent, url?: string, volume?: number) {
+  const timeLabel = ev.isAllDay
+    ? t('all_day')
+    : `${timeString(new Date(ev.start.dateTime))} - ${timeString(new Date(ev.end.dateTime))}`;
   notify(
     {
-      title,
-      message:
-        (duration ? `${duration} ${t('minutes_before')}: ` : '') + ev.notes,
+      title: ev.subject,
+      message: timeLabel,
     },
     {
       onClicked: () => {

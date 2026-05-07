@@ -53,9 +53,6 @@
   "failed_to_fetch": {
     "message": "データを取得できませんでした"
   },
-  "minutes_before": {
-    "message": "分前"
-  },
   "saved": {
     "message": "保存しました"
   },
